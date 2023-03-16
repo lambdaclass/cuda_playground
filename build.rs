@@ -8,8 +8,7 @@ fn main() {
     cfg.cuda(true);
     cfg.include("project/include")
         .include("project/src")
-        .file("project/src/HelloWorld.cu")
-        .file("project/src/Validate.c")
+        .file("HelloWorld.cu")
         .out_dir(dst.join("lib"))
         .flag("-O2")
         .compile("libproject.a");
