@@ -8,7 +8,7 @@ fn main() {
     cfg.cuda(true);
     cfg.file("HelloWorld.cu")
         .out_dir(dst.join("lib"))
-        .flag("-O2")
+        .flag("-O2");
 
     println!("cargo:root={}", dst.display());
     println!("cargo:include={}", dst.join("include").display());
