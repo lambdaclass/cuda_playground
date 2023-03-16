@@ -9,7 +9,6 @@ fn main() {
     cfg.file("HelloWorld.cu")
         .out_dir(dst.join("lib"))
         .flag("-O2")
-        .compile("libproject.a");
 
     println!("cargo:root={}", dst.display());
     println!("cargo:include={}", dst.join("include").display());
