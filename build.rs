@@ -6,9 +6,7 @@ fn main() {
     let tmp_dir = tempfile::TempDir::new().unwrap();
     let dst = tmp_dir.path().join("dst");
     cfg.cuda(true);
-    cfg.include("project/include")
-        .include("project/src")
-        .file("HelloWorld.cu")
+    cfg.file("HelloWorld.cu")
         .out_dir(dst.join("lib"))
         .flag("-O2")
         .compile("libproject.a");
