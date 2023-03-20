@@ -76,7 +76,7 @@ extern  "C" {
       }
 
       for(int i = 0; i < elements; i++){
-        printf("%f\n", x_in[i]);
+        printf("%d\n", x_in[i]);
       }
 
       printf("Calling function\n");
