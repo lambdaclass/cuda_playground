@@ -78,9 +78,8 @@ extern  "C" {
       printf("Calling function\n");
       fft(x_in, x_out, elements);
 
-
-      for(int i = 0; i < elements; i++){
-        std::complex<double> elem = x_out[i]
+      for(int j = 0; j < elements; j++){
+        std::complex<double> elem = x_out[j]
         printf("%f%+fi\n", crealf(elem), cimagf(elem));
       }
 
