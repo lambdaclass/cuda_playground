@@ -1,4 +1,4 @@
-#[link(name = "vector_add", kind = "static")]
+#[link(name = "fft", kind = "static")]
 extern "C" {
     fn main_fft();
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "cuda_runtime.h"
 
 /* ---------------------------------------------------------------------------
@@ -62,14 +63,25 @@ void fft(int *x_in,
 extern  "C" {
 
   int main_fft (void) {
-      printf("Malloc of 1024 elements\n");
+      srand(time(NULL));
       int elements = 1024;
+
+      printf("Malloc of 1024 elements\n");
       int *x_in = (int*)malloc(sizeof(int) * elements);
       std::complex<double> *x_out = (std::complex<double>*)malloc(sizeof(std::complex<double>) * elements);
+
+      printf("Set random elements\n");
+      for(int i = 0; i < elements; i++){
+        x_in[i] = (rand() % 99)
+      }
+
       printf("Calling function\n");
+      fft(x_in, x_out, elements)
+
       printf("Free\n");
       free(x_in);
       free(x_out);
+      
       printf("Done\n");
       return 0;
   }
