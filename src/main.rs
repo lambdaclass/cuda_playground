@@ -1,6 +1,6 @@
 #[link(name = "fft", kind = "static")]
 extern "C" {
-    fn fft();
+    fn main_fft();
 }
 
 fn main() {
