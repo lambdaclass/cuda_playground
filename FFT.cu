@@ -80,7 +80,7 @@ extern  "C" {
 
       for(int j = 0; j < elements; j++){
         std::complex<double> elem = x_out[j];
-        printf("%f%+fi\n", crealf(elem), cimagf(elem));
+        printf("%f%+fi\n", std::crealf(elem), std::cimagf(elem));
       }
 
       printf("Free\n");
