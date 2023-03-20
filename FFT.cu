@@ -79,7 +79,7 @@ extern  "C" {
       fft(x_in, x_out, elements);
 
       for(int j = 0; j < elements; j++){
-        std::complex<double> elem = x_out[j]
+        std::complex<double> elem = x_out[j];
         printf("%f%+fi\n", crealf(elem), cimagf(elem));
       }
 
