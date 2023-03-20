@@ -72,16 +72,16 @@ extern  "C" {
 
       printf("Set random elements\n");
       for(int i = 0; i < elements; i++){
-        x_in[i] = (rand() % 99)
+        x_in[i] = (rand() % 99);
       }
 
       printf("Calling function\n");
-      fft(x_in, x_out, elements)
+      fft(x_in, x_out, elements);
 
       printf("Free\n");
       free(x_in);
       free(x_out);
-      
+
       printf("Done\n");
       return 0;
   }
