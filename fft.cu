@@ -1,4 +1,4 @@
-#include "HelloWorld.h"
+#include "fft.h"
 
 
 __global__ void mykernel(void){
@@ -8,6 +8,6 @@ __global__ void mykernel(void){
 extern  "C" {
 void cudaTest(){
     mykernel<<<1,1>>>();
-    printf("Hello World!\n");
+    
 }
 }

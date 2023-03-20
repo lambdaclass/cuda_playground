@@ -1,5 +1,5 @@
-#ifndef CUDA_HELLO_WORLD_H
-#define CUDA_HELLO_WORLD_H
+#ifndef CUDA_FFT_H
+#define CUDA_FFT_H
 
 #ifdef __cplusplus
 extern "C"
