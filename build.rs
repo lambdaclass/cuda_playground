@@ -6,7 +6,7 @@ fn main() {
         .flag("-cudart=shared")
         .flag("-gencode")
         .flag("arch=compute_75,code=sm_75")
-        .file("fft.cu")
+        .file("FFT.cu")
         .compile("libvector_add.a");
 
     println!("cargo:rustc-link-search=native=/usr/local/cuda/lib64");

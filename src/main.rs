@@ -1,10 +1,10 @@
-#[link(name = "vector_add", kind = "static")]
+#[link(name = "fft", kind = "static")]
 extern "C" {
-    fn cudaTest();
+    fn fft();
 }
 
 fn main() {
     unsafe {
-        cudaTest();
+        main_fft();
     }
 }
