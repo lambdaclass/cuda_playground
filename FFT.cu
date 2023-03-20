@@ -64,22 +64,26 @@ extern  "C" {
 
   int main_fft (void) {
       srand(time(NULL));
-      int elements = 1024;
+      int elements = 4;
 
-      printf("Malloc of 1024 elements\n");
+      printf("Malloc of %d elements\n", elements);
       int *x_in = (int*)malloc(sizeof(int) * elements);
       std::complex<double> *x_out = (std::complex<double>*)malloc(sizeof(std::complex<double>) * elements);
 
       printf("Set random elements\n");
       for(int i = 0; i < elements; i++){
-        x_in[i] = (rand() % 99);
+        x_in[i] = (rand() % 10);
+      }
+
+      for(int i = 0; i < elements; i++){
+        printf("%f\n", x_in[i]);
       }
 
       printf("Calling function\n");
       fft(x_in, x_out, elements);
 
-      for(int j = 0; j < elements; j++){
-        std::complex<double> elem = x_out[j];
+      for(int i = 0; i < elements; i++){
+        std::complex<double> elem = x_out[i];
         printf("%f%+fi\n", std::real(elem), std::imag(elem));
       }
 
