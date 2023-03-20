@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "cuda_runtime.h"
 
 /* ---------------------------------------------------------------------------
@@ -12,20 +13,6 @@
 
 __global__ void mykernel(void){
 
-}
-
-void fft(int *x_in,
-	std::complex<double> *x_out,
-	int N) {
-
-	// Make copy of array and apply window
-	for (int i = 0; i < N; i++) {
-		x_out[i] = std::complex<double>(x_in[i], 0);
-		x_out[i] *= 1; // Window
-	}
-
-	// Start recursion
-	fft_rec(x_out, N);
 }
 
 void fft_rec(std::complex<double> *x, int N) {
@@ -55,6 +42,20 @@ void fft_rec(std::complex<double> *x, int N) {
 	}
 }
 
+void fft(int *x_in,
+	std::complex<double> *x_out,
+	int N) {
+
+	// Make copy of array and apply window
+	for (int i = 0; i < N; i++) {
+		x_out[i] = std::complex<double>(x_in[i], 0);
+		x_out[i] *= 1; // Window
+	}
+
+	// Start recursion
+	fft_rec(x_out, N);
+}
+
 /**
  * Host main routine
  */
@@ -63,8 +64,8 @@ extern  "C" {
   int main_fft (void) {
       printf("Malloc of 1024 elements\n");
       int elements = 1024;
-      int *x_in = malloc(sizeof(int) * elements);
-      std::complex<double> *x_out = malloc(sizeof(std::complex<double>) * elements);
+      int *x_in = (int*)malloc(sizeof(int) * elements);
+      std::complex<double> *x_out = (std::complex<double>*)malloc(sizeof(std::complex<double>) * elements);
       printf("Calling function\n");
       printf("Free\n");
       free(x_in);
