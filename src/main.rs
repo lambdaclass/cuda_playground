@@ -14,6 +14,6 @@ fn main() {
             x_in.push(rng.gen_range(0..10));
         }
         main_fft(x_in.as_mut_ptr(), n);
-        println!("Done");
+        println!("Done with Rust!");
     }
 }
