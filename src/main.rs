@@ -3,8 +3,7 @@ extern "C" {
     fn main_fft(x_in: *mut i32, n: usize);
 }
 
-use rand::Rng;
-use std::time::{SystemTime, UNIX_EPOCH};
+use rand::prelude::*;
 
 fn main() {
     unsafe {
