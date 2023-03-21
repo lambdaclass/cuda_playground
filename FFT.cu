@@ -62,9 +62,8 @@ void fft(int *x_in,
  */
 extern  "C" {
 
-  int main_fft (void) {
+  int main_fft (int elements) {
       srand(time(NULL));
-      int elements = 4;
 
       printf("Malloc of %d elements\n", elements);
       int *x_in = (int*)malloc(sizeof(int) * elements);
