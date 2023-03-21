@@ -62,36 +62,24 @@ void fft(int *x_in,
  */
 extern  "C" {
 
-  int main_fft (int elements) {
-      srand(time(NULL));
+  void main_fft (int *x_in, int n) {
+      printf("Malloc of %d elements\n", n);
+      std::complex<double> *x_out = (std::complex<double>*)malloc(sizeof(std::complex<double>) * n);
 
-      printf("Malloc of %d elements\n", elements);
-      int *x_in = (int*)malloc(sizeof(int) * elements);
-      std::complex<double> *x_out = (std::complex<double>*)malloc(sizeof(std::complex<double>) * elements);
-
-      printf("Set random elements\n");
-      for(int i = 0; i < elements; i++){
-        x_in[i] = (rand() % 10);
-      }
-
-      for(int i = 0; i < elements; i++){
+      for(int i = 0; i < n; i++){
         printf("%d\n", x_in[i]);
       }
 
       printf("Calling function\n");
-      fft(x_in, x_out, elements);
+      fft(x_in, x_out, n);
 
-      for(int i = 0; i < elements; i++){
+      for(int i = 0; i < n; i++){
         std::complex<double> elem = x_out[i];
         printf("%f%+fi\n", std::real(elem), std::imag(elem));
       }
 
       printf("Free\n");
-      free(x_in);
       free(x_out);
-
-      printf("Done\n");
-      return 0;
   }
 
 }
