@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include "cuda_runtime.h"
-
-/* ---------------------------------------------------------------------------
-** Basic implementation of Cooley-Tukey FFT algorithm in C++
-**
-** Author: Darko Lukic <lukicdarkoo@gmail.com>
-** -------------------------------------------------------------------------*/
-
-#include <cmath>
 
 __global__ void mykernel(void){
 
@@ -58,24 +49,8 @@ void ntt(int *x_in, int *x_out, int N) {
  */
 extern  "C" {
 
-  void main_ntt (int *x_in, int n) {
-      printf("Malloc of %d elements\n", n);
-      int *x_out = (int*)malloc(sizeof(int) * n);
-
-      for(int i = 0; i < n; i++){
-        printf("%d\n", x_in[i]);
-      }
-
-      printf("Calling function\n");
+  void main_ntt (int *x_in, int *x_out, int n) {
       ntt(x_in, x_out, n);
-
-      for(int i = 0; i < n; i++){
-        int elem = x_out[i];
-        printf("%d\n", elem);
-      }
-
-      printf("Free\n");
-      free(x_out);
   }
 
 }
