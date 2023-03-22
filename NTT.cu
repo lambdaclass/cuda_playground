@@ -7,6 +7,7 @@ __global__ void mykernel(void){
 }
 
 void ntt_rec(int *x, int N, int w, int mod) {
+	printf(N);
 	if (N <= 1) {
 		return;
 	}
