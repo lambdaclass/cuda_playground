@@ -50,7 +50,7 @@ void ntt(int *x_in, int *x_out, int N) {
 		x_out[i] *= 1; // Window
 	}
 
-	ntt_rec(x_out, N, w, mod)
+	ntt_rec(x_out, N, w, mod);
 }
 
 /**
