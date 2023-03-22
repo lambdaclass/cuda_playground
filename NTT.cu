@@ -35,10 +35,8 @@ void ntt(int *x_in, int *x_out, int N) {
 	const int mod = 998244353;
 	const int w = 372528824;
 
-	// Make copy of array and apply window
 	for (int i = 0; i < N; i++) {
 		x_out[i] = x_in[i];
-		x_out[i] *= 1; // Window
 	}
 
 	ntt_rec(x_out, N, w, mod);
@@ -51,9 +49,6 @@ extern  "C" {
 
   void main_ntt (int *x_in, int *x_out, int n) {
       ntt(x_in, x_out, n);
-			for(int i = 0; i < n; i++){
-				printf("%d\n", x_out[i]);
-			}
   }
 
 }

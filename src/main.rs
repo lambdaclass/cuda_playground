@@ -16,15 +16,12 @@ fn main() {
         for _i in 0..n {
             x_in.push(rng.gen_range(0..10));
         }
+
         println!("X_in: {:?}", x_in);
-        let ptr_out = x_out.as_mut_ptr();
-        let ptr_in = x_in.as_mut_ptr();
 
         main_ntt(ptr_in, ptr_out, n);
-
         let slice = slice::from_raw_parts(ptr_out, n);
-        println!("slice {}", slice[0]);
+        
         println!("X_out: {:?}", slice);
-        println!("Done with Rust!");
     }
 }
