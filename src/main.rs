@@ -1,4 +1,5 @@
 use rand::prelude::*;
+use std::slice;
 
 #[link(name = "ntt", kind = "static")]
 extern "C" {
@@ -16,8 +17,8 @@ fn main() {
             x_in.push(rng.gen_range(0..10));
         }
         println!("X_in: {:?}", x_in);
-        ptr_out = x_out.as_mut_ptr();
-        ptr_in = x_in.as_mut_ptr();
+        let ptr_out = x_out.as_mut_ptr();
+        let ptr_in = x_in.as_mut_ptr();
 
         main_ntt(ptr_in, ptr_out, n);
 
