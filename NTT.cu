@@ -51,8 +51,9 @@ extern  "C" {
 
   void main_ntt (int *x_in, int *x_out, int n) {
       ntt(x_in, x_out, n);
+			printf("Memory pos xout %d\n", &x_out);
 			for(int i = 0; i < n; i++){
-				printf("%d", x_out[i]);
+				printf("%d\n", x_out[i]);
 			}
   }
 
