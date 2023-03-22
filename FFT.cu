@@ -1,60 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include "cuda_runtime.h"
-
-/* ---------------------------------------------------------------------------
-** Basic implementation of Cooley-Tukey FFT algorithm in C++
-**
-** Author: Darko Lukic <lukicdarkoo@gmail.com>
-** -------------------------------------------------------------------------*/
-
-#include <cmath>
-#include <complex>
 
 __global__ void mykernel(void){
 
 }
 
-void fft_rec(std::complex<double> *x, int N) {
-	// Check if it is splitted enough
+void fft_rec(int *x, int N, int w, int mod) {
 	if (N <= 1) {
 		return;
 	}
 
-	// Split even and odd
-	std::complex<double> odd[N/2];
-	std::complex<double> even[N/2];
+	int odd[N/2];
+	int even[N/2];
 	for (int i = 0; i < N / 2; i++) {
 		even[i] = x[i*2];
 		odd[i] = x[i*2+1];
 	}
 
-	// Split on tasks
-	fft_rec(even, N/2);
-	fft_rec(odd, N/2);
+	fft_rec(even, N/2, (1LL * w * w) % mod, mod);
+	fft_rec(odd, N/2, (1LL * w * w) % mod, mod);
 
-
-	// Calculate DFT
+	// Calculate FFT
+	int wn = 1;
 	for (int k = 0; k < N / 2; k++) {
-		std::complex<double> t = exp(std::complex<double>(0, -2 * M_PI * k / N)) * odd[k];
-		x[k] = even[k] + t;
-		x[N / 2 + k] = even[k] - t;
+		int t = (1LL * wn * odd[k]) % mod;
+		x[k] = (even[k] + t) % mod;
+		x[N / 2 + k] = (even[k] - t + mod) % mod;
+		wn = (1LL * wn * w) % mod;
 	}
 }
 
-void fft(int *x_in,
-	std::complex<double> *x_out,
-	int N) {
+void fft(int *x_in, int *x_out, int N) {
+	const int mod = 998244353;
+	const int w = 372528824;
 
-	// Make copy of array and apply window
 	for (int i = 0; i < N; i++) {
-		x_out[i] = std::complex<double>(x_in[i], 0);
-		x_out[i] *= 1; // Window
+		x_out[i] = x_in[i];
 	}
 
-	// Start recursion
-	fft_rec(x_out, N);
+	fft_rec(x_out, N, w, mod);
 }
 
 /**
@@ -62,24 +47,8 @@ void fft(int *x_in,
  */
 extern  "C" {
 
-  void main_fft (int *x_in, int n) {
-      printf("Malloc of %d elements\n", n);
-      std::complex<double> *x_out = (std::complex<double>*)malloc(sizeof(std::complex<double>) * n);
-
-      for(int i = 0; i < n; i++){
-        printf("%d\n", x_in[i]);
-      }
-
-      printf("Calling function\n");
+  void main_fft (int *x_in, int *x_out, int n) {
       fft(x_in, x_out, n);
-
-      for(int i = 0; i < n; i++){
-        std::complex<double> elem = x_out[i];
-        printf("%f%+fi\n", std::real(elem), std::imag(elem));
-      }
-
-      printf("Free\n");
-      free(x_out);
   }
 
 }
