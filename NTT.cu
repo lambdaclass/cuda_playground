@@ -51,6 +51,9 @@ extern  "C" {
 
   void main_ntt (int *x_in, int *x_out, int n) {
       ntt(x_in, x_out, n);
+			for(int i = 0; i < n; i++){
+				printf(x_out[i]);
+			}
   }
 
 }
