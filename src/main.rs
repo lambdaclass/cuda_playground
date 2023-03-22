@@ -17,7 +17,7 @@ fn main() {
         }
         println!("X_in: {:?}", x_in);
         main_ntt(x_in.as_mut_ptr(), x_out.as_mut_ptr(), n);
-        println!("X_out: {:?}", x_in);
+        println!("X_out: {:?}", x_out);
         println!("Done with Rust!");
     }
 }
