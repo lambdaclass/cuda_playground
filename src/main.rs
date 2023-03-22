@@ -15,7 +15,9 @@ fn main() {
         for _i in 0..n {
             x_in.push(rng.gen_range(0..10));
         }
+        println!("X_in: {:?}", x_in);
         main_ntt(x_in.as_mut_ptr(), x_out.as_mut_ptr(), n);
+        println!("X_out: {:?}", x_in);
         println!("Done with Rust!");
     }
 }
