@@ -42,7 +42,7 @@ void ntt_rec(int *x, int N, int w, int mod) {
 
 void ntt(int *x_in, int *x_out, int N) {
 	const int mod = 998244353;
-	const int w = 3;
+	const int w = 372528824;
 
 	// Make copy of array and apply window
 	for (int i = 0; i < N; i++) {
