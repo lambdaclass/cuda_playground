@@ -46,7 +46,7 @@ void ntt(int *x_in, int *x_out, int N) {
 
 	// Make copy of array and apply window
 	for (int i = 0; i < N; i++) {
-		x_out[i] = x_in[i]
+		x_out[i] = x_in[i];
 		x_out[i] *= 1; // Window
 	}
 
