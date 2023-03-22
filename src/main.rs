@@ -1,9 +1,10 @@
-#[link(name = "fft", kind = "static")]
+use rand::prelude::*;
+
+#[link(name = "ntt", kind = "static")]
 extern "C" {
-    fn main_fft(x_in: *mut i32, n: usize);
+    fn main_ntt(x_in: *mut i32, n: usize);
 }
 
-use rand::prelude::*;
 
 fn main() {
     unsafe {
@@ -13,7 +14,7 @@ fn main() {
         for _i in 0..n {
             x_in.push(rng.gen_range(0..10));
         }
-        main_fft(x_in.as_mut_ptr(), n);
+        main_ntt(x_in.as_mut_ptr(), n);
         println!("Done with Rust!");
     }
 }
