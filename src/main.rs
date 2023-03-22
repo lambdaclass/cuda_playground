@@ -12,13 +12,13 @@ fn main() {
         let n = 8;
         let mut x_in: Vec<i32> = Vec::with_capacity(n);
         let mut x_out: Vec<i32> = Vec::with_capacity(n);
-        println!("Memory pos of x_out {}", &x_out);
+        println!("Memory pos of x_out {}", x_out.as_mut_ptr());
         for _i in 0..n {
             x_in.push(rng.gen_range(0..10));
         }
         println!("X_in: {:?}", x_in);
         main_ntt(x_in.as_mut_ptr(), x_out.as_mut_ptr(), n);
-        println!("Memory pos of x_out {}", &x_out);
+        println!("Memory pos of x_out {}", x_out.as_mut_ptr());
         println!("X_out: {:?}", x_out);
         println!("Done with Rust!");
     }
