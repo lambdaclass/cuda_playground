@@ -10,7 +10,6 @@
 ** -------------------------------------------------------------------------*/
 
 #include <cmath>
-#include <complex>
 
 __global__ void mykernel(void){
 
@@ -61,7 +60,7 @@ extern  "C" {
 
   void main_ntt (int *x_in, int n) {
       printf("Malloc of %d elements\n", n);
-      std::complex<double> *x_out = (std::complex<double>*)malloc(sizeof(std::complex<double>) * n);
+      int *x_out = (int*)malloc(sizeof(int) * n);
 
       for(int i = 0; i < n; i++){
         printf("%d\n", x_in[i]);
@@ -71,8 +70,8 @@ extern  "C" {
       ntt(x_in, x_out, n);
 
       for(int i = 0; i < n; i++){
-        std::complex<double> elem = x_out[i];
-        printf("%f%+fi\n", std::real(elem), std::imag(elem));
+        int elem = x_out[i];
+        printf("%d\n", elem);
       }
 
       printf("Free\n");
