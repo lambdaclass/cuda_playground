@@ -1,9 +1,9 @@
 use rand::prelude::*;
 use std::slice;
 
-#[link(name = "ntt", kind = "static")]
+#[link(name = "fft", kind = "static")]
 extern "C" {
-    fn main_ntt(x_in: *mut i32, x_out: *mut i32, n: usize);
+    fn main_fft(x_in: *mut i32, x_out: *mut i32, n: usize);
 }
 
 
@@ -20,7 +20,7 @@ fn main() {
         println!("X_in: {:?}", x_in);
         let ptr_out = x_out.as_mut_ptr();
         let ptr_in = x_in.as_mut_ptr();
-        main_ntt(ptr_in, ptr_out, n);
+        main_fft(ptr_in, ptr_out, n);
         let slice = slice::from_raw_parts(ptr_out, n);
         println!("X_out: {:?}", slice);
     }

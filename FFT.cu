@@ -6,7 +6,7 @@ __global__ void mykernel(void){
 
 }
 
-void ntt_rec(int *x, int N, int w, int mod) {
+void fft_rec(int *x, int N, int w, int mod) {
 	if (N <= 1) {
 		return;
 	}
@@ -18,10 +18,10 @@ void ntt_rec(int *x, int N, int w, int mod) {
 		odd[i] = x[i*2+1];
 	}
 
-	ntt_rec(even, N/2, (1LL * w * w) % mod, mod);
-	ntt_rec(odd, N/2, (1LL * w * w) % mod, mod);
+	fft_rec(even, N/2, (1LL * w * w) % mod, mod);
+	fft_rec(odd, N/2, (1LL * w * w) % mod, mod);
 
-	// Calculate NTT
+	// Calculate FFT
 	int wn = 1;
 	for (int k = 0; k < N / 2; k++) {
 		int t = (1LL * wn * odd[k]) % mod;
@@ -31,7 +31,7 @@ void ntt_rec(int *x, int N, int w, int mod) {
 	}
 }
 
-void ntt(int *x_in, int *x_out, int N) {
+void fft(int *x_in, int *x_out, int N) {
 	const int mod = 998244353;
 	const int w = 372528824;
 
@@ -39,7 +39,7 @@ void ntt(int *x_in, int *x_out, int N) {
 		x_out[i] = x_in[i];
 	}
 
-	ntt_rec(x_out, N, w, mod);
+	fft_rec(x_out, N, w, mod);
 }
 
 /**
@@ -47,8 +47,8 @@ void ntt(int *x_in, int *x_out, int N) {
  */
 extern  "C" {
 
-  void main_ntt (int *x_in, int *x_out, int n) {
-      ntt(x_in, x_out, n);
+  void main_fft (int *x_in, int *x_out, int n) {
+      fft(x_in, x_out, n);
   }
 
 }
